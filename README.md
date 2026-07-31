@@ -3,8 +3,8 @@
 This repository contains an end-to-end Machine Learning model for predicting heart disease risk based on patient clinical attributes, deployed as a REST API on Render.
 
 ## Live Deployment URL
-- **Render Service Web App:** `https://your-render-app-name.onrender.com`
-- **Predict API Endpoint:** `https://your-render-app-name.onrender.com/predict`
+- **Render Service Web App:** `https://heart-disease-predictor-ia1t.onrender.com/`
+- **Predict API Endpoint:** `https://heart-disease-predictor-ia1t.onrender.com/predict`
 
 ## Repository Structure
 HeartDiseaseDeployment/
