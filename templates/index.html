@@ -15,19 +15,19 @@
 <body>
     <h2>Heart Disease Risk Assessment</h2>
     <form action="/predict_ui" method="POST">
-        <div class="form-group"><label>Age:</label><input type="number" name="age" value="63" required></div>
-        <div class="form-group"><label>Sex (1 = Male, 0 = Female):</label><input type="number" name="sex" value="1" required></div>
-        <div class="form-group"><label>Chest Pain Type (0-3):</label><input type="number" name="cp" value="3" required></div>
-        <div class="form-group"><label>Resting Blood Pressure (trestbps):</label><input type="number" name="trestbps" value="145" required></div>
-        <div class="form-group"><label>Cholesterol (chol):</label><input type="number" name="chol" value="233" required></div>
-        <div class="form-group"><label>Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False):</label><input type="number" name="fbs" value="1" required></div>
-        <div class="form-group"><label>Resting ECG (restecg 0-2):</label><input type="number" name="restecg" value="0" required></div>
-        <div class="form-group"><label>Max Heart Rate (thalach):</label><input type="number" name="thalach" value="150" required></div>
-        <div class="form-group"><label>Exercise Induced Angina (exang 1 = Yes, 0 = No):</label><input type="number" name="exang" value="0" required></div>
-        <div class="form-group"><label>ST Depression (oldpeak):</label><input type="number" step="0.1" name="oldpeak" value="2.3" required></div>
-        <div class="form-group"><label>Slope of Peak Exercise ST (slope 0-2):</label><input type="number" name="slope" value="0" required></div>
-        <div class="form-group"><label>Major Vessels (ca 0-4):</label><input type="number" name="ca" value="0" required></div>
-        <div class="form-group"><label>Thalassemia (thal 0-3):</label><input type="number" name="thal" value="1" required></div>
+        <div class="form-group"><label>Age:</label><input type="number" name="age" value="{{ inputs.get('age', '') }}" placeholder="e.g. 63" required></div>
+        <div class="form-group"><label>Sex (1 = Male, 0 = Female):</label><input type="number" name="sex" value="{{ inputs.get('sex', '') }}" placeholder="1 or 0" required></div>
+        <div class="form-group"><label>Chest Pain Type (0-3):</label><input type="number" name="cp" value="{{ inputs.get('cp', '') }}" placeholder="0, 1, 2, or 3" required></div>
+        <div class="form-group"><label>Resting Blood Pressure (trestbps):</label><input type="number" name="trestbps" value="{{ inputs.get('trestbps', '') }}" placeholder="e.g. 145" required></div>
+        <div class="form-group"><label>Cholesterol (chol):</label><input type="number" name="chol" value="{{ inputs.get('chol', '') }}" placeholder="e.g. 233" required></div>
+        <div class="form-group"><label>Fasting Blood Sugar > 120 mg/dl (1 = True, 0 = False):</label><input type="number" name="fbs" value="{{ inputs.get('fbs', '') }}" placeholder="1 or 0" required></div>
+        <div class="form-group"><label>Resting ECG (restecg 0-2):</label><input type="number" name="restecg" value="{{ inputs.get('restecg', '') }}" placeholder="0, 1, or 2" required></div>
+        <div class="form-group"><label>Max Heart Rate (thalach):</label><input type="number" name="thalach" value="{{ inputs.get('thalach', '') }}" placeholder="e.g. 150" required></div>
+        <div class="form-group"><label>Exercise Induced Angina (exang 1 = Yes, 0 = No):</label><input type="number" name="exang" value="{{ inputs.get('exang', '') }}" placeholder="1 or 0" required></div>
+        <div class="form-group"><label>ST Depression (oldpeak):</label><input type="number" step="0.1" name="oldpeak" value="{{ inputs.get('oldpeak', '') }}" placeholder="e.g. 2.3" required></div>
+        <div class="form-group"><label>Slope of Peak Exercise ST (slope 0-2):</label><input type="number" name="slope" value="{{ inputs.get('slope', '') }}" placeholder="0, 1, or 2" required></div>
+        <div class="form-group"><label>Major Vessels (ca 0-4):</label><input type="number" name="ca" value="{{ inputs.get('ca', '') }}" placeholder="0-4" required></div>
+        <div class="form-group"><label>Thalassemia (thal 0-3):</label><input type="number" name="thal" value="{{ inputs.get('thal', '') }}" placeholder="0-3" required></div>
         
         <button type="submit">Predict Risk</button>
     </form>

@@ -8,7 +8,8 @@
         .card { border: 2px solid #ddd; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .result { font-size: 24px; font-weight: bold; margin: 20px 0; color: #d9534f; }
         .safe { color: #5cb85c; }
-        a { display: inline-block; margin-top: 15px; color: #007bff; text-decoration: none; font-weight: bold; }
+        .back-btn { background: none; border: none; color: #007bff; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; }
+        .back-btn:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -17,7 +18,14 @@
         <div class="result {% if 'No' in prediction %}safe{% endif %}">
             {{ prediction }}
         </div>
-        <a href="/">← Go Back to Form</a>
+        
+        <!-- Form passing input values back to the main route -->
+        <form action="/" method="POST">
+            {% for key, val in inputs.items() %}
+                <input type="hidden" name="{{ key }}" value="{{ val }}">
+            {% endfor %}
+            <button type="submit" class="back-btn">← Go Back to Form</button>
+        </form>
     </div>
 </body>
 </html>

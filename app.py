@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
+# Load trained model
 MODEL_PATH = "model.pkl"
 model = joblib.load(MODEL_PATH) if os.path.exists(MODEL_PATH) else None
 
@@ -14,22 +15,24 @@ FEATURE_NAMES = [
     'oldpeak', 'slope', 'ca', 'thal'
 ]
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    """Render home form webpage."""
-    return render_template('index.html')
+    """Renders blank form on GET, or preserves form data on POST."""
+    inputs = request.form.to_dict() if request.method == 'POST' else {}
+    return render_template('index.html', inputs=inputs)
 
 @app.route('/predict_ui', methods=['POST'])
 def predict_ui():
-    """Handles HTML Form submission and renders result.html."""
+    """Handles HTML Form submission and passes inputs to result.html."""
     try:
-        input_data = [float(request.form[col]) for col in FEATURE_NAMES]
+        raw_form_data = request.form.to_dict()
+        input_data = [float(raw_form_data[col]) for col in FEATURE_NAMES]
         features_array = np.array(input_data).reshape(1, -1)
 
         raw_pred = int(model.predict(features_array)[0])
         prediction_text = "Heart Disease Detected" if raw_pred == 1 else "No Heart Disease Detected"
 
-        return render_template('result.html', prediction=prediction_text)
+        return render_template('result.html', prediction=prediction_text, inputs=raw_form_data)
     except Exception as e:
         return f"Error processing form data: {str(e)}", 400
 
